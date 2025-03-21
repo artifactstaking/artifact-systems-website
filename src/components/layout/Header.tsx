@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, ChevronDown } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../utils/constants';
 import LogoDark from '../../assets/Artifact-logo-dark.svg';
 import { useTransition } from '../../contexts/TransitionContext';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProductsOpen, setIsProductsOpen] = useState(false);
-  const [isCompanyOpen, setIsCompanyOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isProductsOpen, setIsProductsOpen] = React.useState(false);
+  const [isCompanyOpen, setIsCompanyOpen] = React.useState(false);
   const isMobile = useMediaQuery('(max-width: 768px)');
   const isLandscape = useMediaQuery('(orientation: landscape)');
   const navigate = useNavigate();

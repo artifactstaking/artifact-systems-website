@@ -46,7 +46,7 @@ export function Layout({ children }: LayoutProps) {
   }, []);
 
   return (
-    <div className={`flex flex-col min-h-screen bg-[#000000] ${(isMobile || isLandscape) ? 'mobile-layout overflow-x-hidden w-full' : ''}`}>
+    <div className={`flex flex-col min-h-screen bg-[#000000] ${(isMobile || isLandscape) ? 'mobile-layout overflow-x-hidden w-screen' : ''}`}>
       <Header />
       <AnimatePresence mode="wait">
         <motion.main
@@ -57,9 +57,7 @@ export function Layout({ children }: LayoutProps) {
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="flex-grow pt-16 relative w-full overflow-x-hidden"
         >
-          <div className={`${(isMobile || isLandscape) ? 'w-full px-4' : 'container mx-auto px-4'}`}>
-            {children}
-          </div>
+          {children}
         </motion.main>
       </AnimatePresence>
       <Footer />
