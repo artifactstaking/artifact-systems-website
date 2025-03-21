@@ -37,7 +37,7 @@ export function ContactForm({ isOpen, onClose }: ContactFormProps) {
             className="relative w-full max-w-2xl"
           >
             <div className={containerStyle}>
-              <div className="sticky top-0 bg-black/90 z-10 px-6 py-4 border-b border-white/10 dark:border-white/5 rounded-t-xl flex justify-between items-center">
+              <div className="sticky top-0 bg-black/90 z-10 px-6 py-3 border-b border-white/10 dark:border-white/5 rounded-t-xl flex justify-between items-center">
                 <h2 className={`text-2xl font-bold ${headingStyle}`}>
                   Send us a message
                 </h2>
@@ -50,7 +50,7 @@ export function ContactForm({ isOpen, onClose }: ContactFormProps) {
                 </button>
               </div>
 
-              <div className="px-6 py-4">
+              <div className="px-6 py-3">
                 <ContactFormContent onSuccess={onClose} />
               </div>
             </div>
