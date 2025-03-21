@@ -2,11 +2,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { XLogo } from '../ui/XLogo';
 import { Github } from 'lucide-react';
+import { useTransition } from '../../contexts/TransitionContext';
 
 export function SiteDirectory() {
   const navigate = useNavigate();
+  const { startTransition } = useTransition();
 
-  const handleNavigation = (path: string) => {
+  const handleNavigation = async (path: string) => {
+    await startTransition();
     navigate(path);
     window.scrollTo(0, 0);
   };

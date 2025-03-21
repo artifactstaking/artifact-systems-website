@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { About } from './About';
-import { Hardware } from './Hardware';
-import { Validation } from './Validation';
-import { RPC } from './RPC';
-import { Sequencing } from './Sequencing';
-import { ZKProver } from './ZKProver';
-import { GPUCompute } from './GPUCompute';
-import { Contact } from './Contact';
 import { Layout } from '../components/layout/Layout';
 import { Button } from '../components/ui/Button';
 import { ContactForm } from '../components/ui/ContactForm';
 import { SolutionsCarousel } from '../components/ui/SolutionsCarousel';
 import { SiteDirectory } from '../components/layout/SiteDirectory';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { useTransition } from '../contexts/TransitionContext';
 import WatchingRocketImage from '../assets/WatchingRocket.webp';
 
 export function Home() {
@@ -23,26 +14,7 @@ export function Home() {
   const [pageHeight, setPageHeight] = useState(0);
   const [directoryHeight, setDirectoryHeight] = useState(0);
   const navigate = useNavigate();
-
-  const [heroRef, heroInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-
-  const [statsRef, statsInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-
-  const [descriptionRef, descriptionInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-
-  const [hardwareRef, hardwareInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
+  const { startTransition } = useTransition();
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -89,12 +61,14 @@ export function Home() {
   const headingStyle = "text-white dark:text-white";
   const textStyle = "text-white/90 dark:text-white/90";
 
-  const handleHardwareClick = () => {
+  const handleHardwareClick = async () => {
+    await startTransition();
     navigate('/hardware');
     window.scrollTo(0, 0);
   };
 
-  const handleNavigation = (path: string) => {
+  const handleNavigation = async (path: string) => {
+    await startTransition();
     navigate(path);
     window.scrollTo(0, 0);
   };
@@ -113,13 +87,7 @@ export function Home() {
           <div className="relative z-10">
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-16">
-              <motion.section 
-                ref={heroRef}
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className={`${containerStyle} max-w-4xl mx-auto text-center`}
-              >
+              <section className={`${containerStyle} max-w-4xl mx-auto text-center`}>
                 <h1 className={`text-2xl md:text-4xl lg:text-5xl font-bold mb-4 ${headingStyle}`}>
                   Privately owned infrastructure for institutions on the Web3 frontier.
                 </h1>
@@ -138,7 +106,7 @@ export function Home() {
                   <Button size="lg" onClick={() => setIsContactFormOpen(true)}>Get Started</Button>
                   <Button size="lg" variant="outline" onClick={() => handleNavigation('/about')}>Learn More</Button>
                 </div>
-              </motion.section>
+              </section>
             </div>
 
             {/* Contact Form Modal */}
@@ -148,13 +116,7 @@ export function Home() {
             />
 
             {/* Stats Bar */}
-            <motion.div
-              ref={statsRef}
-              initial={{ opacity: 0, y: 20 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-              className={`container mx-auto px-4 py-12`}
-            >
+            <div className={`container mx-auto px-4 py-12`}>
               <div className={`${containerStyle} grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4`}>
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl font-bold text-white mb-2">97+</div>
@@ -173,16 +135,10 @@ export function Home() {
                   <div className="text-sm text-gray-400 uppercase tracking-wider">Uptime</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Company Description Section */}
-            <motion.div
-              ref={descriptionRef}
-              initial={{ opacity: 0, y: 20 }}
-              animate={descriptionInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-              className="container mx-auto px-4 py-20"
-            >
+            <div className="container mx-auto px-4 py-20">
               <div className={`${containerStyle} max-w-4xl mx-auto space-y-8 text-center`}>
                 <p className="text-lg md:text-xl text-white leading-relaxed">
                   Artifact Systems is a high-performance Web3 infrastructure company that provides enterprise-grade RPC, validation, zkProver, and managed GPU compute services.
@@ -191,16 +147,10 @@ export function Home() {
                   Our clients are critical to the Web3 ecosystem and include blockchain foundations, digital asset custodians, crypto banks, exchanges, high-frequency trading groups, and liquidity providers.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Hardware Section */}
-            <motion.div
-              ref={hardwareRef}
-              initial={{ opacity: 0, y: 20 }}
-              animate={hardwareInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-              className="container mx-auto px-4 py-20"
-            >
+            <div className="container mx-auto px-4 py-20">
               <div className={`${containerStyle} max-w-3xl mx-auto text-center`}>
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
                   Fine-tuned servers that cloud providers cannot supply
@@ -210,7 +160,7 @@ export function Home() {
                 </p>
                 <Button size="lg" variant="outline" onClick={handleHardwareClick}>Learn More</Button>
               </div>
-            </motion.div>
+            </div>
 
             {/* Solutions Carousel */}
             <SolutionsCarousel />

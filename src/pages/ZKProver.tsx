@@ -2,24 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Layout } from '../components/layout/Layout';
 import { Cpu, Lock, Zap } from 'lucide-react';
 import { SiteDirectory } from '../components/layout/SiteDirectory';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import CybermarketImage from '../assets/Cybermarket.webp';
 
 export function ZKProver() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [pageHeight, setPageHeight] = useState(0);
   const [directoryHeight, setDirectoryHeight] = useState(0);
-
-  const [titleRef, titleInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-
-  const [featuresRef, featuresInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -67,24 +55,6 @@ export function ZKProver() {
   const headingStyle = "text-white dark:text-white";
   const textStyle = "text-white/90 dark:text-white/90";
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
-  const featureVariants = {
-    hidden: { opacity: 0, rotateX: 45 },
-    visible: (i: number) => ({
-      opacity: 1,
-      rotateX: 0,
-      transition: {
-        delay: i * 0.2,
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    })
-  };
-
   return (
     <Layout>
       <div className="min-h-screen flex flex-col">
@@ -99,37 +69,21 @@ export function ZKProver() {
           <div className="relative z-10">
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-16">
-              <motion.div
-                ref={titleRef}
-                initial="hidden"
-                animate={titleInView ? "visible" : "hidden"}
-                variants={containerVariants}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className={`${containerStyle} max-w-4xl mx-auto text-center`}
-              >
+              <div className={`${containerStyle} max-w-4xl mx-auto text-center`}>
                 <h1 className={`text-4xl md:text-5xl font-bold mb-6 ${headingStyle}`}>
                   ZK Prover Infrastructure
                 </h1>
                 <p className={`text-xl ${textStyle}`}>
                   High-performance zero-knowledge proof generation with enterprise-grade hardware.
                 </p>
-              </motion.div>
+              </div>
             </div>
 
             {/* Features Section */}
             <div className="container mx-auto px-4 py-16">
-              <div 
-                ref={featuresRef}
-                className="max-w-4xl mx-auto space-y-8"
-              >
+              <div className="max-w-4xl mx-auto space-y-8">
                 {/* Computational Power */}
-                <motion.div
-                  custom={0}
-                  initial="hidden"
-                  animate={featuresInView ? "visible" : "hidden"}
-                  variants={featureVariants}
-                  className={`${containerStyle} transform-gpu`}
-                >
+                <div className={`${containerStyle} transform-gpu`}>
                   <div className="flex items-start space-x-6">
                     <div className={iconContainerStyle}>
                       <Cpu className="w-8 h-8 text-white" />
@@ -143,16 +97,10 @@ export function ZKProver() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Security Features */}
-                <motion.div
-                  custom={1}
-                  initial="hidden"
-                  animate={featuresInView ? "visible" : "hidden"}
-                  variants={featureVariants}
-                  className={`${containerStyle} transform-gpu`}
-                >
+                <div className={`${containerStyle} transform-gpu`}>
                   <div className="flex items-start space-x-6">
                     <div className={iconContainerStyle}>
                       <Lock className="w-8 h-8 text-white" />
@@ -166,16 +114,10 @@ export function ZKProver() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Performance Optimization */}
-                <motion.div
-                  custom={2}
-                  initial="hidden"
-                  animate={featuresInView ? "visible" : "hidden"}
-                  variants={featureVariants}
-                  className={`${containerStyle} transform-gpu`}
-                >
+                <div className={`${containerStyle} transform-gpu`}>
                   <div className="flex items-start space-x-6">
                     <div className={iconContainerStyle}>
                       <Zap className="w-8 h-8 text-white" />
@@ -189,7 +131,7 @@ export function ZKProver() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </div>

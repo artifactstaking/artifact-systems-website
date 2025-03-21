@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../utils/constants';
 import { Button } from './Button';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
+import { useTransition } from '../../contexts/TransitionContext';
 
 const solutions = [
   {
@@ -37,6 +38,7 @@ export function SolutionsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const { startTransition } = useTransition();
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? solutions.length - 1 : prev - 1));
@@ -46,7 +48,8 @@ export function SolutionsCarousel() {
     setCurrentIndex((prev) => (prev === solutions.length - 1 ? 0 : prev + 1));
   };
 
-  const handleClick = (route: string) => {
+  const handleClick = async (route: string) => {
+    await startTransition();
     navigate(route);
     window.scrollTo(0, 0);
   };

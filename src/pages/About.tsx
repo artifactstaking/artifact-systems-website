@@ -4,8 +4,6 @@ import { Shield, Lock, Server } from 'lucide-react';
 import { SiteDirectory } from '../components/layout/SiteDirectory';
 import { Button } from '../components/ui/Button';
 import { ContactForm } from '../components/ui/ContactForm';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import CloudDreamingImage from '../assets/9CloudDreaming.webp';
 
 export function About() {
@@ -13,15 +11,6 @@ export function About() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [pageHeight, setPageHeight] = useState(0);
   const [directoryHeight, setDirectoryHeight] = useState(0);
-  
-  const [titleRef, titleInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-
-  const [card1Ref, card1InView] = useInView({ triggerOnce: true, threshold: 0.2 });
-  const [card2Ref, card2InView] = useInView({ triggerOnce: true, threshold: 0.2 });
-  const [card3Ref, card3InView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -83,12 +72,7 @@ export function About() {
           <div className="relative z-10">
             {/* Hero Content */}
             <div className="container mx-auto px-4 py-12 md:py-24">
-              <motion.div 
-                className="max-w-4xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-              >
+              <div className="max-w-4xl mx-auto">
                 <div className={containerStyle}>
                   <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 ${headingStyle}`}>
                     Our Mission
@@ -100,7 +84,7 @@ export function About() {
                     Get Started
                   </Button>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Contact Form Modal */}
@@ -113,31 +97,19 @@ export function About() {
             <div className="container mx-auto px-4 py-12 md:py-20">
               <div className="max-w-7xl mx-auto">
                 {/* Title Container */}
-                <motion.div
-                  ref={titleRef}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={titleInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className={`${containerStyle} text-center mb-12 max-w-2xl mx-auto`}
-                >
+                <div className={`${containerStyle} text-center mb-12 max-w-2xl mx-auto`}>
                   <h2 className={`text-2xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 ${headingStyle}`}>
                     Operational Excellence
                   </h2>
                   <p className={`text-lg md:text-xl ${textStyle}`}>
                     Setting the standard in blockchain infrastructure
                   </p>
-                </motion.div>
+                </div>
 
                 <div className="flex flex-col space-y-8 md:space-y-12">
                   {/* Infrastructure */}
                   <div className="flex justify-start md:px-6">
-                    <motion.div
-                      ref={card1Ref}
-                      initial={{ opacity: 0, x: -50 }}
-                      animate={card1InView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
-                      className={`${containerStyle} w-full md:w-[600px]`}
-                    >
+                    <div className={`${containerStyle} w-full md:w-[600px]`}>
                       <div className="flex items-center space-x-4 mb-4 md:mb-6">
                         <div className={iconContainerStyle}>
                           <Server className="w-6 h-6 md:w-8 md:h-8 text-white" />
@@ -158,18 +130,12 @@ export function About() {
                           </p>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
 
                   {/* Security and Compliance */}
                   <div className="flex justify-end md:px-6">
-                    <motion.div
-                      ref={card2Ref}
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={card2InView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
-                      className={`${containerStyle} w-full md:w-[600px]`}
-                    >
+                    <div className={`${containerStyle} w-full md:w-[600px]`}>
                       <div className="flex items-center space-x-4 mb-4 md:mb-6">
                         <div className={iconContainerStyle}>
                           <Lock className="w-6 h-6 md:w-8 md:h-8 text-white" />
@@ -190,18 +156,12 @@ export function About() {
                           </p>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
 
                   {/* Operational Resiliency */}
                   <div className="flex justify-start md:px-6">
-                    <motion.div
-                      ref={card3Ref}
-                      initial={{ opacity: 0, x: -50 }}
-                      animate={card3InView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
-                      className={`${containerStyle} w-full md:w-[600px]`}
-                    >
+                    <div className={`${containerStyle} w-full md:w-[600px]`}>
                       <div className="flex items-center space-x-4 mb-4 md:mb-6">
                         <div className={iconContainerStyle}>
                           <Shield className="w-6 h-6 md:w-8 md:h-8 text-white" />
@@ -222,7 +182,7 @@ export function About() {
                           </p>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
               </div>

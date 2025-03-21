@@ -63,9 +63,9 @@ ${formData.message}
       // Send notification email to Artifact Systems
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        'template_notification',
+        import.meta.env.VITE_EMAILJS_NOTIFICATION_TEMPLATE,
         {
-          to_email: 'hello@artifact-systems.io',
+          to_email: import.meta.env.VITE_CONTACT_EMAIL,
           from_name: formData.name,
           from_email: formData.email,
           company: formData.companyName,
@@ -79,7 +79,7 @@ ${formData.message}
       // Send auto-reply to the user
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        'hello-artifact-email',
+        import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE,
         {
           to_email: formData.email,
           from_name: formData.name,
@@ -230,6 +230,7 @@ ${formData.message}
               type="submit" 
               size="lg"
               disabled={isSubmitting}
+              variant="primary"
             >
               {isSubmitting ? 'Sending...' : 'Submit'}
             </Button>

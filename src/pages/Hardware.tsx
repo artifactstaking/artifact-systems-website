@@ -2,24 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Layout } from '../components/layout/Layout';
 import { Shield, Zap, TrendingUp, Globe } from 'lucide-react';
 import { SiteDirectory } from '../components/layout/SiteDirectory';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import UnderwaterServer from '../assets/Underwaterserverfullres.webp';
 
 export function Hardware() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [pageHeight, setPageHeight] = useState(0);
   const [directoryHeight, setDirectoryHeight] = useState(0);
-  
-  const [titleRef, titleInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-
-  const [card1Ref, card1InView] = useInView({ triggerOnce: true, threshold: 0.2 });
-  const [card2Ref, card2InView] = useInView({ triggerOnce: true, threshold: 0.2 });
-  const [card3Ref, card3InView] = useInView({ triggerOnce: true, threshold: 0.2 });
-  const [card4Ref, card4InView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -81,20 +69,14 @@ export function Hardware() {
           <div className="relative z-10">
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-12 md:py-24">
-              <motion.div 
-                ref={titleRef}
-                initial={{ opacity: 0, y: 20 }}
-                animate={titleInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className={`${containerStyle} max-w-4xl mx-auto text-center`}
-              >
+              <div className={`${containerStyle} max-w-4xl mx-auto text-center`}>
                 <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 ${headingStyle}`}>
                   Bespoke Hardware Solutions
                 </h1>
                 <p className={`text-base md:text-xl ${textStyle}`}>
                   Unlike most Web3 infrastructure companies, Artifact owns, configures, and upgrades all its hardware in several Tier III colocation facilities across the globe.
                 </p>
-              </motion.div>
+              </div>
             </div>
 
             {/* Hardware Features */}
@@ -102,13 +84,7 @@ export function Hardware() {
               <div className="max-w-6xl mx-auto space-y-8">
                 {/* Security */}
                 <div className="flex justify-start md:px-6">
-                  <motion.div
-                    ref={card1Ref}
-                    initial={{ opacity: 0, x: -100 }}
-                    animate={card1InView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className={`${containerStyle} w-full md:w-[600px]`}
-                  >
+                  <div className={`${containerStyle} w-full md:w-[600px]`}>
                     <div className="flex items-center space-x-4 mb-6">
                       <div className={iconContainerStyle}>
                         <Shield className="w-8 h-8 text-white" />
@@ -118,18 +94,12 @@ export function Hardware() {
                     <p className={textStyle}>
                       Only select Artifact staff have access to our secure server cabinets, and all of our network traffic runs through fully redundant hardware firewalls that we directly control.
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Performance */}
                 <div className="flex justify-end md:px-6">
-                  <motion.div
-                    ref={card2Ref}
-                    initial={{ opacity: 0, x: 100 }}
-                    animate={card2InView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className={`${containerStyle} w-full md:w-[600px]`}
-                  >
+                  <div className={`${containerStyle} w-full md:w-[600px]`}>
                     <div className="flex items-center space-x-4 mb-6">
                       <div className={iconContainerStyle}>
                         <Zap className="w-8 h-8 text-white" />
@@ -139,18 +109,12 @@ export function Hardware() {
                     <p className={textStyle}>
                       We custom-build servers to meet the needs of our clients and procure high-performance systems that cloud providers do not offer.
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Competitive Advantage */}
                 <div className="flex justify-start md:px-6">
-                  <motion.div
-                    ref={card3Ref}
-                    initial={{ opacity: 0, x: -100 }}
-                    animate={card3InView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className={`${containerStyle} w-full md:w-[600px]`}
-                  >
+                  <div className={`${containerStyle} w-full md:w-[600px]`}>
                     <div className="flex items-center space-x-4 mb-6">
                       <div className={iconContainerStyle}>
                         <TrendingUp className="w-8 h-8 text-white" />
@@ -160,18 +124,12 @@ export function Hardware() {
                     <p className={textStyle}>
                       Artifact's infrastructure costs are fixed, allowing us to budget far into the future. Unlike our cloud-dependent competitors, we are insulated from profit margin compression during bear markets.
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Bare Metal Partners */}
                 <div className="flex justify-end md:px-6">
-                  <motion.div
-                    ref={card4Ref}
-                    initial={{ opacity: 0, x: 100 }}
-                    animate={card4InView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className={`${containerStyle} w-full md:w-[600px]`}
-                  >
+                  <div className={`${containerStyle} w-full md:w-[600px]`}>
                     <div className="flex items-center space-x-4 mb-6">
                       <div className={iconContainerStyle}>
                         <Globe className="w-8 h-8 text-white" />
@@ -181,7 +139,7 @@ export function Hardware() {
                     <p className={textStyle}>
                       If you have specific geolocation needs that cannot be met by our data centers, we have partnerships with bare metal providers in 26 locations.
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
             </div>

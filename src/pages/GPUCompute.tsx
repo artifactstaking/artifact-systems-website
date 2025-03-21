@@ -2,24 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Layout } from '../components/layout/Layout';
 import { Cpu as Gpu, Network, BarChart } from 'lucide-react';
 import { SiteDirectory } from '../components/layout/SiteDirectory';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import CycleImage from '../assets/Cycle.webp';
 
 export function GPUCompute() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [pageHeight, setPageHeight] = useState(0);
   const [directoryHeight, setDirectoryHeight] = useState(0);
-
-  const [titleRef, titleInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-
-  const [featuresRef, featuresInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -67,39 +55,6 @@ export function GPUCompute() {
   const headingStyle = "text-white dark:text-white";
   const textStyle = "text-white/90 dark:text-white/90";
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
-  const staggerContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const featureVariants = {
-    hidden: { 
-      opacity: 0,
-      y: 20,
-      filter: 'blur(10px)'
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      transition: {
-        duration: 0.7,
-        ease: [0.165, 0.84, 0.44, 1]
-      }
-    }
-  };
-
   return (
     <Layout>
       <div className="min-h-screen flex flex-col">
@@ -114,40 +69,21 @@ export function GPUCompute() {
           <div className="relative z-10">
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-16">
-              <motion.div
-                ref={titleRef}
-                initial="hidden"
-                animate={titleInView ? "visible" : "hidden"}
-                variants={containerVariants}
-                transition={{ 
-                  duration: 0.8,
-                  ease: [0.165, 0.84, 0.44, 1]
-                }}
-                className={`${containerStyle} max-w-4xl mx-auto text-center`}
-              >
+              <div className={`${containerStyle} max-w-4xl mx-auto text-center`}>
                 <h1 className={`text-4xl md:text-5xl font-bold mb-6 ${headingStyle}`}>
                   GPU Compute Solutions
                 </h1>
                 <p className={`text-xl ${textStyle}`}>
                   High-performance GPU infrastructure for demanding computational workloads.
                 </p>
-              </motion.div>
+              </div>
             </div>
 
             {/* Features Section */}
             <div className="container mx-auto px-4 py-16">
-              <motion.div 
-                ref={featuresRef}
-                initial="hidden"
-                animate={featuresInView ? "visible" : "hidden"}
-                variants={staggerContainerVariants}
-                className="max-w-4xl mx-auto space-y-8"
-              >
+              <div className="max-w-4xl mx-auto space-y-8">
                 {/* GPU Infrastructure */}
-                <motion.div
-                  variants={featureVariants}
-                  className={`${containerStyle} transform-gpu`}
-                >
+                <div className={`${containerStyle} transform-gpu`}>
                   <div className="flex items-start space-x-6">
                     <div className={iconContainerStyle}>
                       <Gpu className="w-8 h-8 text-white" />
@@ -161,13 +97,10 @@ export function GPUCompute() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Network Architecture */}
-                <motion.div
-                  variants={featureVariants}
-                  className={`${containerStyle} transform-gpu`}
-                >
+                <div className={`${containerStyle} transform-gpu`}>
                   <div className="flex items-start space-x-6">
                     <div className={iconContainerStyle}>
                       <Network className="w-8 h-8 text-white" />
@@ -181,13 +114,10 @@ export function GPUCompute() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Monitoring and Analytics */}
-                <motion.div
-                  variants={featureVariants}
-                  className={`${containerStyle} transform-gpu`}
-                >
+                <div className={`${containerStyle} transform-gpu`}>
                   <div className="flex items-start space-x-6">
                     <div className={iconContainerStyle}>
                       <BarChart className="w-8 h-8 text-white" />
@@ -201,8 +131,8 @@ export function GPUCompute() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

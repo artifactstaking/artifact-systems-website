@@ -2,24 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Layout } from '../components/layout/Layout';
 import { ContactFormContent } from '../components/ui/ContactFormContent';
 import { SiteDirectory } from '../components/layout/SiteDirectory';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import PiratesImage from '../assets/Pirates.webp';
 
 export function Contact() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [pageHeight, setPageHeight] = useState(0);
   const [directoryHeight, setDirectoryHeight] = useState(0);
-
-  const [titleRef, titleInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-
-  const [formRef, formInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -66,11 +54,6 @@ export function Contact() {
   const headingStyle = "text-white dark:text-white";
   const textStyle = "text-white/90 dark:text-white/90";
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   return (
     <Layout>
       <div className="min-h-screen flex flex-col">
@@ -84,35 +67,21 @@ export function Contact() {
           {/* Content Container */}
           <div className="relative z-10">
             <div className="container mx-auto px-4 py-16">
-              <motion.div
-                ref={titleRef}
-                initial="hidden"
-                animate={titleInView ? "visible" : "hidden"}
-                variants={containerVariants}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className={`${containerStyle} max-w-4xl mx-auto text-center mb-12`}
-              >
+              <div className={`${containerStyle} max-w-4xl mx-auto text-center mb-12`}>
                 <h1 className={`text-4xl md:text-5xl font-bold mb-6 ${headingStyle}`}>
                   Contact Us
                 </h1>
                 <p className={`text-xl ${textStyle}`}>
                   Get in touch with us to learn more about our services and how we can help you.
                 </p>
-              </motion.div>
+              </div>
 
-              <motion.div
-                ref={formRef}
-                initial="hidden"
-                animate={formInView ? "visible" : "hidden"}
-                variants={containerVariants}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                className={`${containerStyle} max-w-4xl mx-auto`}
-              >
+              <div className={`${containerStyle} max-w-4xl mx-auto`}>
                 <h2 className={`text-2xl font-bold ${headingStyle} mb-6`}>
                   Send us a message
                 </h2>
                 <ContactFormContent />
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>

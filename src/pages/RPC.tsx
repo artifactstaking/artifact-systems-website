@@ -2,29 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Layout } from '../components/layout/Layout';
 import { Rocket, Zap, Archive, Lock, Users } from 'lucide-react';
 import { SiteDirectory } from '../components/layout/SiteDirectory';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import DataHavenImage from '../assets/DataHaven.webp';
 
 export function RPC() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [pageHeight, setPageHeight] = useState(0);
   const [directoryHeight, setDirectoryHeight] = useState(0);
-
-  const [titleRef, titleInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-
-  const [featuresRef, featuresInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-
-  const [servicesRef, servicesInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -72,33 +55,6 @@ export function RPC() {
   const headingStyle = "text-white dark:text-white";
   const textStyle = "text-white/90 dark:text-white/90";
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const staggerContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
   return (
     <Layout>
       <div className="min-h-screen flex flex-col">
@@ -113,37 +69,21 @@ export function RPC() {
           <div className="relative z-10">
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-16">
-              <motion.div
-                ref={titleRef}
-                initial="hidden"
-                animate={titleInView ? "visible" : "hidden"}
-                variants={containerVariants}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className={`${containerStyle} max-w-4xl mx-auto text-center`}
-              >
+              <div className={`${containerStyle} max-w-4xl mx-auto text-center`}>
                 <h1 className={`text-4xl md:text-5xl font-bold mb-6 ${headingStyle}`}>
                   RPC Services
                 </h1>
                 <p className={`text-xl ${textStyle}`}>
                   Connect to any blockchain at any speed, with fixed costs.
                 </p>
-              </motion.div>
+              </div>
             </div>
 
             {/* Features Section */}
             <div className="container mx-auto px-4 py-16">
-              <motion.div
-                ref={featuresRef}
-                initial="hidden"
-                animate={featuresInView ? "visible" : "hidden"}
-                variants={staggerContainerVariants}
-                className="max-w-4xl mx-auto space-y-8"
-              >
+              <div className="max-w-4xl mx-auto space-y-8">
                 {/* Get What You Need */}
-                <motion.div
-                  variants={cardVariants}
-                  className={`${containerStyle}`}
-                >
+                <div className={`${containerStyle}`}>
                   <div className="flex items-start space-x-6">
                     <div className={iconContainerStyle}>
                       <Rocket className="w-8 h-8 text-white" />
@@ -157,13 +97,10 @@ export function RPC() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Be First to Market */}
-                <motion.div
-                  variants={cardVariants}
-                  className={`${containerStyle}`}
-                >
+                <div className={`${containerStyle}`}>
                   <div className="flex items-start space-x-6">
                     <div className={iconContainerStyle}>
                       <Zap className="w-8 h-8 text-white" />
@@ -177,13 +114,10 @@ export function RPC() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Full Archive */}
-                <motion.div
-                  variants={cardVariants}
-                  className={`${containerStyle}`}
-                >
+                <div className={`${containerStyle}`}>
                   <div className="flex items-start space-x-6">
                     <div className={iconContainerStyle}>
                       <Archive className="w-8 h-8 text-white" />
@@ -197,24 +131,15 @@ export function RPC() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </div>
 
             {/* Service Types */}
             <div className="container mx-auto px-4 py-16">
-              <motion.div
-                ref={servicesRef}
-                initial="hidden"
-                animate={servicesInView ? "visible" : "hidden"}
-                variants={staggerContainerVariants}
-                className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8"
-              >
+              <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
                 {/* Private */}
-                <motion.div
-                  variants={cardVariants}
-                  className={`${containerStyle}`}
-                >
+                <div className={`${containerStyle}`}>
                   <div className="flex items-center space-x-4 mb-6">
                     <div className={iconContainerStyle}>
                       <Lock className="w-8 h-8 text-white" />
@@ -241,13 +166,10 @@ export function RPC() {
                       </p>
                     </li>
                   </ul>
-                </motion.div>
+                </div>
 
                 {/* Pooled */}
-                <motion.div
-                  variants={cardVariants}
-                  className={`${containerStyle}`}
-                >
+                <div className={`${containerStyle}`}>
                   <div className="flex items-center space-x-4 mb-6">
                     <div className={iconContainerStyle}>
                       <Users className="w-8 h-8 text-white" />
@@ -274,8 +196,8 @@ export function RPC() {
                       </p>
                     </li>
                   </ul>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

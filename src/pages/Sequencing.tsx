@@ -2,24 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Layout } from '../components/layout/Layout';
 import { Cpu, Shield, Globe } from 'lucide-react';
 import { SiteDirectory } from '../components/layout/SiteDirectory';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import ShipCrashImage from '../assets/ShipCrash.webp';
 
 export function Sequencing() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [pageHeight, setPageHeight] = useState(0);
   const [directoryHeight, setDirectoryHeight] = useState(0);
-
-  const [titleRef, titleInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-
-  const [featuresRef, featuresInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -67,24 +55,6 @@ export function Sequencing() {
   const headingStyle = "text-white dark:text-white";
   const textStyle = "text-white/90 dark:text-white/90";
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
-  const featureVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: (i: number) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: i * 0.2,
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    })
-  };
-
   return (
     <Layout>
       <div className="min-h-screen flex flex-col">
@@ -99,37 +69,21 @@ export function Sequencing() {
           <div className="relative z-10">
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-16">
-              <motion.div
-                ref={titleRef}
-                initial="hidden"
-                animate={titleInView ? "visible" : "hidden"}
-                variants={containerVariants}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className={`${containerStyle} max-w-4xl mx-auto text-center`}
-              >
+              <div className={`${containerStyle} max-w-4xl mx-auto text-center`}>
                 <h1 className={`text-4xl md:text-5xl font-bold mb-6 ${headingStyle}`}>
                   Sequencing Services
                 </h1>
                 <p className={`text-xl ${textStyle}`}>
                   High-performance transaction sequencing with enterprise-grade reliability.
                 </p>
-              </motion.div>
+              </div>
             </div>
 
             {/* Features Section */}
             <div className="container mx-auto px-4 py-16">
-              <div 
-                ref={featuresRef}
-                className="max-w-4xl mx-auto space-y-8"
-              >
+              <div className="max-w-4xl mx-auto space-y-8">
                 {/* Performance Metrics */}
-                <motion.div
-                  custom={0}
-                  initial="hidden"
-                  animate={featuresInView ? "visible" : "hidden"}
-                  variants={featureVariants}
-                  className={`${containerStyle}`}
-                >
+                <div className={`${containerStyle}`}>
                   <div className="flex items-start space-x-6">
                     <div className={iconContainerStyle}>
                       <Cpu className="w-8 h-8 text-white" />
@@ -143,16 +97,10 @@ export function Sequencing() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Reliability Features */}
-                <motion.div
-                  custom={1}
-                  initial="hidden"
-                  animate={featuresInView ? "visible" : "hidden"}
-                  variants={featureVariants}
-                  className={`${containerStyle}`}
-                >
+                <div className={`${containerStyle}`}>
                   <div className="flex items-start space-x-6">
                     <div className={iconContainerStyle}>
                       <Shield className="w-8 h-8 text-white" />
@@ -166,16 +114,10 @@ export function Sequencing() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Network Capabilities */}
-                <motion.div
-                  custom={2}
-                  initial="hidden"
-                  animate={featuresInView ? "visible" : "hidden"}
-                  variants={featureVariants}
-                  className={`${containerStyle}`}
-                >
+                <div className={`${containerStyle}`}>
                   <div className="flex items-start space-x-6">
                     <div className={iconContainerStyle}>
                       <Globe className="w-8 h-8 text-white" />
@@ -189,7 +131,7 @@ export function Sequencing() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </div>

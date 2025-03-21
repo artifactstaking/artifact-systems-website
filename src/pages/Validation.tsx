@@ -2,24 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Layout } from '../components/layout/Layout';
 import { Shield, Users, AlertCircle, Code } from 'lucide-react';
 import { SiteDirectory } from '../components/layout/SiteDirectory';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import MonitorImage from '../assets/Monitor.webp';
 
 export function Validation() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [pageHeight, setPageHeight] = useState(0);
   const [directoryHeight, setDirectoryHeight] = useState(0);
-  
-  const [titleRef, titleInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-
-  const [card1Ref, card1InView] = useInView({ triggerOnce: true, threshold: 0.2 });
-  const [card2Ref, card2InView] = useInView({ triggerOnce: true, threshold: 0.2 });
-  const [card3Ref, card3InView] = useInView({ triggerOnce: true, threshold: 0.2 });
-  const [card4Ref, card4InView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -81,20 +69,14 @@ export function Validation() {
           <div className="relative z-10">
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-12 md:py-24">
-              <motion.div 
-                ref={titleRef}
-                initial={{ opacity: 0, y: 20 }}
-                animate={titleInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className={`${containerStyle} max-w-4xl mx-auto text-center`}
-              >
+              <div className={`${containerStyle} max-w-4xl mx-auto text-center`}>
                 <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 ${headingStyle}`}>
                   Validation Offerings
                 </h1>
                 <p className={`text-base md:text-xl ${textStyle}`}>
                   Artifact provides custom validation solutions that are tailored to each of our clients' needs, ensuring optimal performance and reliability.
                 </p>
-              </motion.div>
+              </div>
             </div>
 
             {/* Validation Features */}
@@ -102,13 +84,7 @@ export function Validation() {
               <div className="max-w-6xl mx-auto space-y-8">
                 {/* White Label Validation */}
                 <div className="flex justify-end md:px-6">
-                  <motion.div
-                    ref={card1Ref}
-                    initial={{ opacity: 0, x: 100 }}
-                    animate={card1InView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className={`${containerStyle} w-full md:w-[600px]`}
-                  >
+                  <div className={`${containerStyle} w-full md:w-[600px]`}>
                     <div className="flex items-center space-x-4 mb-6">
                       <div className={iconContainerStyle}>
                         <Shield className="w-8 h-8 text-white" />
@@ -118,18 +94,12 @@ export function Validation() {
                     <p className={textStyle}>
                       Our white label validation service allows you to maintain your brand identity while leveraging our robust infrastructure and expertise. We handle the technical complexities while you focus on your business growth.
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Validator Commission Sharing */}
                 <div className="flex justify-start md:px-6">
-                  <motion.div
-                    ref={card2Ref}
-                    initial={{ opacity: 0, x: -100 }}
-                    animate={card2InView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className={`${containerStyle} w-full md:w-[600px]`}
-                  >
+                  <div className={`${containerStyle} w-full md:w-[600px]`}>
                     <div className="flex items-center space-x-4 mb-6">
                       <div className={iconContainerStyle}>
                         <Users className="w-8 h-8 text-white" />
@@ -139,18 +109,12 @@ export function Validation() {
                     <p className={textStyle}>
                       Partner with us through our commission sharing program. Bring your delegations to our Artifact-branded validators and benefit from a competitive share of the commission revenue, backed by our enterprise-grade infrastructure.
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Slashing Protection */}
                 <div className="flex justify-end md:px-6">
-                  <motion.div
-                    ref={card3Ref}
-                    initial={{ opacity: 0, x: 100 }}
-                    animate={card3InView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className={`${containerStyle} w-full md:w-[600px]`}
-                  >
+                  <div className={`${containerStyle} w-full md:w-[600px]`}>
                     <div className="flex items-center space-x-4 mb-6">
                       <div className={iconContainerStyle}>
                         <AlertCircle className="w-8 h-8 text-white" />
@@ -160,18 +124,12 @@ export function Validation() {
                     <p className={textStyle}>
                       Our advanced monitoring systems and redundant infrastructure provide comprehensive slashing protection, safeguarding your assets and ensuring optimal validator performance with minimal risk.
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Custom Integrations */}
                 <div className="flex justify-start md:px-6">
-                  <motion.div
-                    ref={card4Ref}
-                    initial={{ opacity: 0, x: -100 }}
-                    animate={card4InView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className={`${containerStyle} w-full md:w-[600px]`}
-                  >
+                  <div className={`${containerStyle} w-full md:w-[600px]`}>
                     <div className="flex items-center space-x-4 mb-6">
                       <div className={iconContainerStyle}>
                         <Code className="w-8 h-8 text-white" />
@@ -181,7 +139,7 @@ export function Validation() {
                     <p className={textStyle}>
                       We develop tailored integration solutions that seamlessly connect with your existing platforms and workflows, providing real-time monitoring, reporting, and management capabilities.
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
             </div>
