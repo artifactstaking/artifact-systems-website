@@ -26,7 +26,7 @@ export function ContactForm({ isOpen, onClose }: ContactFormProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 bg-black/50 flex items-start md:items-center justify-center z-50 overflow-y-auto p-4"
+          className="fixed inset-0 bg-black/50 flex items-start justify-center z-50 overflow-y-auto p-4 mt-16 md:mt-20"
           onClick={handleBackdropClick}
         >
           <motion.div
