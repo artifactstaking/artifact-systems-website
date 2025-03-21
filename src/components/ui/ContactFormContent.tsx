@@ -230,7 +230,6 @@ ${formData.message}
               type="submit" 
               size="lg"
               disabled={isSubmitting}
-              variant="primary"
             >
               {isSubmitting ? 'Sending...' : 'Submit'}
             </Button>
