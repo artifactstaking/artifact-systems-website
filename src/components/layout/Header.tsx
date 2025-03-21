@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Menu, ChevronDown } from 'lucide-react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../utils/constants';
 import LogoDark from '../../assets/Artifact-logo-dark.svg';
 import { useTransition } from '../../contexts/TransitionContext';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isProductsOpen, setIsProductsOpen] = React.useState(false);
-  const [isCompanyOpen, setIsCompanyOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isCompanyOpen, setIsCompanyOpen] = useState(false);
+  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isLandscape = useMediaQuery('(orientation: landscape)');
   const navigate = useNavigate();
   const location = useLocation();
   const { startTransition } = useTransition();
@@ -59,7 +62,7 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#000000] text-white border-b border-gray-800 backdrop-blur-sm bg-opacity-90">
-      <div className="container mx-auto px-4">
+      <div className={`w-full px-4 ${isMobile || isLandscape ? 'max-w-full' : 'container mx-auto'}`}>
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <a href="/" onClick={handleLogoClick}>
